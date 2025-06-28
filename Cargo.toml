@@ -2,8 +2,18 @@
 name = "misc-bintools"
 version = "0.1.0"
 edition = "2024"
+license-file = "LICENSE.txt"
+authors = ["Bart Massey <bart.massey@gmail.com>"]
+description = "Miscellaneous tiny tools"
 
 [dependencies]
 clap = { version = "4.5.40", features = ["derive"] }
 dns-lookup = "2.0.4"
 fastrand = "2.3.0"
+
+[package.metadata.deb]
+extended-description = """\
+A few tiny tools that the author uses for simple tasks.\
+"""
+section = "Miscellaneous"
+priority = "optional"

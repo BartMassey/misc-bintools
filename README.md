@@ -17,6 +17,9 @@ The easiest way to build these commands for installation is
 `sh collect.sh`. This will build a `bin/` directory
 containing compiled versions of the commands.
 
+There is `Cargo.toml` metadata for building a Debian package
+using `cargo-deb`.
+
 ## License
 
 This work is made available under the "Apache 2.0 or MIT
