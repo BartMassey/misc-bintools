@@ -9,7 +9,9 @@ extern crate fastrand;
 #[derive(Parser)]
 /// Shuffle a file. With no argument, acts as a shuffle filter.
 struct Args {
-    #[arg(help = "file to shuffle")]
+    #[arg(long, help = "Write just one random line to stdout")]
+    one: bool,
+    #[arg(help = "File to shuffle")]
     filename: Option<PathBuf>,
 }
 
@@ -47,16 +49,32 @@ fn test_write_shuffle() {
     }
 }
 
+fn print_random_line(text: String) {
+    let lines: Vec<&str> = text.lines().collect();
+    if let Some(chosen) = fastrand::choice(lines) {
+        println!("{}", chosen);
+    }
+}
+
 fn run() -> Result<(), Error> {
     let args = Args::parse();
+
     if let Some(filename) = args.filename {
         let f = File::open(&filename)?;
         let text = read_file(f)?;
-        let f = File::create(&filename)?;
-        write_shuffle(f, text)?;
+        if args.one {
+            print_random_line(text);
+        } else {
+            let f = File::create(&filename)?;
+            write_shuffle(f, text)?;
+        }
     } else {
         let text = read_file(stdin().lock())?;
-        write_shuffle(stdout().lock(), text)?;
+        if args.one {
+            print_random_line(text);
+        } else {
+            write_shuffle(stdout().lock(), text)?;
+        }
     }
     Ok(())
 }
