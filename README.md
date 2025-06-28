@@ -9,6 +9,12 @@ implementation anyhow.
 * `shuffle`: Shuffle lines of a file. Can be used as a
   filter.
 
+## Installing
+
+The easiest way to build these commands for installation is
+`sh collect.sh`. This will build a `bin/` directory
+containing compiled versions of the commands.
+
 ## License
 
 This work is made available under the "Apache 2.0 or MIT
