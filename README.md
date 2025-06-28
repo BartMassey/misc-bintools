@@ -8,6 +8,8 @@ implementation anyhow.
 
 * `shuffle`: Shuffle lines of a file. Can be used as a
   filter.
+* `ipaddr`: Look up IP address from name using local resolver.
+* `ipname`: Look up name from IP address using local resolver.
 
 ## Installing
 
